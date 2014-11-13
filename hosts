@@ -1,0 +1,2 @@
+[digitalocean]
+mongodb ansible_ssh_host=188.226.154.70
