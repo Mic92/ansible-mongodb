@@ -2,12 +2,7 @@
   apt_repository: repo='ppa:rquillo/ansible'
 - name: Ansible | Install ansible via apt
   apt: pkg=ansible state=present update_cache=yes
-- name: Ansible | Create global config dir
-  file:
-    path=/etc/ansible
-    state=directory
-    owner=root group=root mode=0755
 - name: Ansible | Install git via apt
   apt: pkg=git state=present
 - name: Ansible | clone ansible playbooks
-  git: repo=https://github.com/Mic92/ansible-mongodb.git dest=/etc/ansible
+  git: repo=https://github.com/Mic92/ansible-mongodb.git dest=/root/ansible
