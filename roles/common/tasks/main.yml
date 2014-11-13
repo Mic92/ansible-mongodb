@@ -1,0 +1,19 @@
+- name: install sudo
+  apt: pkg=sudo state=present
+
+- name: Allow sudo group to use sudo
+  lineinfile: "dest=/etc/sudoers state=present regexp='^%wheel' line='%sudo ALL=(ALL) NOPASSWD: ALL'"
+
+- user: name=admin shell=/bin/bash groups=sudo append=yes
+
+- name: Create ~admin/.ssh
+  file: path=/home/admin/.ssh state=directory
+
+- name: SSH Keys
+  copy: src=authorized_keys dest=/home/admin/.ssh/authorized_keys
+
+- name: deploy bashrc
+  copy: src="bashrc" dest="/home/admin/.bashrc" owner="admin" group="admin"
+
+- name: deploy vimrc
+  copy: src="vimrc" dest="/home/admin/.vimrc" owner="admin" group="admin"
